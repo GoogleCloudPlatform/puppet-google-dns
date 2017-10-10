@@ -90,6 +90,7 @@ puppet-codegen:
   * .tests/end2end/data/managed_zone.pp
   * .tests/end2end/data/project.pp
   * .tests/end2end/data/resource_record_set.pp
+  * CHANGELOG.md
   * CONTRIBUTING.md
   * examples/delete_managed_zone.pp
   * examples/delete_resource_record_set.pp

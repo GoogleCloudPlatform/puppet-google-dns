@@ -183,7 +183,10 @@ Puppet::Type.type(:gdns_resource_record_set).provide(:google) do
     self.class.self_link(data)
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def self.return_if_object(response, kind)
+    raise "Bad response: #{response.body}" \
+      if response.is_a?(Net::HTTPBadRequest)
     raise "Bad response: #{response}" \
       unless response.is_a?(Net::HTTPResponse)
     return if response.is_a?(Net::HTTPNotFound)
@@ -195,6 +198,7 @@ Puppet::Type.type(:gdns_resource_record_set).provide(:google) do
       unless result['kind'] == kind
     result
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def return_if_object(response, kind)
     self.class.return_if_object(response, kind)
@@ -271,7 +275,7 @@ Puppet::Type.type(:gdns_resource_record_set).provide(:google) do
 
     # Create a clone of the SOA record so we can update it
     updated_soa = original_soa.clone
-    updated_soa.keys.each do |k|
+    updated_soa.each_key do |k|
       updated_soa[k] = original_soa[k].clone \
         unless original_soa[k].is_a?(Integer)
     end
@@ -333,6 +337,10 @@ Puppet::Type.type(:gdns_resource_record_set).provide(:google) do
   end
 
   def return_if_change_object(response)
+    raise "Bad request: #{response.body}" \
+      if response.is_a?(Net::HTTPBadRequest)
+    raise "Bad response: #{response}" \
+      unless response.is_a?(Net::HTTPResponse)
     return unless response.class >= Net::HTTPOK
     result = JSON.parse(response.body)
     raise "Incorrect result: #{result['kind']}" \

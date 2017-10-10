@@ -29,20 +29,22 @@ require 'google/dns/property/integer'
 require 'puppet'
 
 Puppet::Type.newtype(:gdns_project) do
-  @doc = <<-EOT
+  @doc = <<-DOC
     A project resource. The project is a top level container for resources
     including Cloud DNS ManagedZones.
-  EOT
+  DOC
 
   autorequire(:gauth_credential) do
-    [self[:credential]]
+    credential = self[:credential]
+    raise "#{ref}: required property 'credential' is missing" if credential.nil?
+    [credential]
   end
 
   newparam :credential do
-    desc <<-EOT
+    desc <<-DESC
       A gauth_credential name to be used to authenticate with Google Cloud
       Platform.
-    EOT
+    DESC
   end
 
   newparam(:project) do
@@ -55,10 +57,10 @@ Puppet::Type.newtype(:gdns_project) do
   end
 
   newproperty(:number, parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Unique numeric identifier for the resource; defined by the server.
       (output only)
-    EOT
+    DOC
   end
 
   newproperty(:quota_managed_zones, parent: Google::Dns::Property::Integer) do
@@ -67,41 +69,41 @@ Puppet::Type.newtype(:gdns_project) do
 
   newproperty(:quota_resource_records_per_rrset,
               parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Maximum allowed number of ResourceRecords per ResourceRecordSet. (output
       only)
-    EOT
+    DOC
   end
 
   newproperty(:quota_rrset_additions_per_change,
               parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Maximum allowed number of ResourceRecordSets to add per
       ChangesCreateRequest. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:quota_rrset_deletions_per_change,
               parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Maximum allowed number of ResourceRecordSets to delete per
       ChangesCreateRequest. (output only)
-    EOT
+    DOC
   end
 
   newproperty(:quota_rrsets_per_managed_zone,
               parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Maximum allowed number of ResourceRecordSets per zone in the project.
       (output only)
-    EOT
+    DOC
   end
 
   newproperty(:quota_total_rrdata_size_per_change,
               parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Maximum allowed size for total rrdata in one ChangesCreateRequest in
       bytes. (output only)
-    EOT
+    DOC
   end
 end

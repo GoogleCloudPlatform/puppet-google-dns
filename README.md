@@ -1,5 +1,7 @@
 # Google Cloud DNS Puppet Module
 
+[![Puppet Forge](http://img.shields.io/puppetforge/v/google/gdns.svg)](https://forge.puppetlabs.com/google/gdns)
+
 #### Table of Contents
 
 1. [Module Description - What the module does and why it is useful](

@@ -36,20 +36,24 @@ Puppet::Type.newtype(:gdns_resource_record_set) do
   @doc = 'A unit of data that will be returned by the DNS servers.'
 
   autorequire(:gauth_credential) do
-    [self[:credential]]
+    credential = self[:credential]
+    raise "#{ref}: required property 'credential' is missing" if credential.nil?
+    [credential]
   end
 
   autorequire(:gdns_managed_zone) do
-    self[:managed_zone].autorequires
+    reference = self[:managed_zone]
+    raise "#{ref} required property 'managed_zone' is missing" if reference.nil?
+    reference.autorequires
   end
 
   ensurable
 
   newparam :credential do
-    desc <<-EOT
+    desc <<-DESC
       A gauth_credential name to be used to authenticate with Google Cloud
       Platform.
-    EOT
+    DESC
   end
 
   newparam(:project) do
@@ -86,9 +90,9 @@ Puppet::Type.newtype(:gdns_resource_record_set) do
   end
 
   newproperty(:ttl, parent: Google::Dns::Property::Integer) do
-    desc <<-EOT
+    desc <<-DOC
       Number of seconds that this ResourceRecordSet can be cached by resolvers.
-    EOT
+    DOC
   end
 
   newproperty(:target, parent: Google::Dns::Property::StringArray) do
