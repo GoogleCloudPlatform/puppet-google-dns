@@ -85,11 +85,11 @@ puppet-codegen:
 
   * .gitignore
   * .rubocop.yml
-  * .tests/end2end/data/delete_managed_zone.pp
-  * .tests/end2end/data/delete_resource_record_set.pp
-  * .tests/end2end/data/managed_zone.pp
-  * .tests/end2end/data/project.pp
-  * .tests/end2end/data/resource_record_set.pp
+  * .tools/end2end/data/delete_managed_zone.pp
+  * .tools/end2end/data/delete_resource_record_set.pp
+  * .tools/end2end/data/managed_zone.pp
+  * .tools/end2end/data/project.pp
+  * .tools/end2end/data/resource_record_set.pp
   * CHANGELOG.md
   * CONTRIBUTING.md
   * examples/delete_managed_zone.pp
@@ -175,7 +175,7 @@ puppet-codegen:
 The list below contains all the files that were automatically sourced from a
 central location:
 
-  * .tests/README.md
+  * .tools/README.md
   * Gemfile.lock
   * LICENSE
   * spec/data/poor_example.pp
