@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -28,27 +28,33 @@
 # An example Puppet manifest that ensures Google Cloud Computing DNS Resource
 # Record Set in a project do not exist.
 
-# Defines a credential to be used when communicating with Google Cloud
-# Platform. The title of this credential is then used as the 'credential'
-# parameter in the gdns_managed_zone type.
+# Getting Started
+# ---------------
+# The following example requires two environment variables to be set:
+#     * cred_path - a path to a JSON service account file
+#     * project - the name of your GCP project
 #
-# For more information on the gauth_credential parameters and providers please
-# refer to its detailed documentation at:
-#
-#   https://forge.puppet.com/google/gauth
-#
-# For the sake of this example we set the parameter 'path' to point to the file
-# that contains your credential in JSON format. And for convenience this example
-# allows a variable named $cred_path to be provided to it. If running from the
-# command line you can pass it via Facter:
+# If running from the command line you can pass these via Facter:
 #
 #   FACTER_cred_path=/path/to/my/cred.json \
+#   FACTER_project='my-test-project'
 #       puppet apply examples/delete_resource_record_set.pp
 #
 # For convenience you optionally can add it to your ~/.bash_profile (or the
 # respective .profile settings) environment:
 #
 #   export FACTER_cred_path=/path/to/my/cred.json
+#   export FACTER_project='my-test-project'
+#
+# Authenticating to GCP
+# ---------------------
+# `gauth_credential` defines a credential to be used when communicating with
+# Google Cloud Platform.
+#
+# For more information on the gauth_credential parameters and providers please
+# refer to its detailed documentation at:
+#
+#   https://forge.puppet.com/google/gauth
 #
 gauth_credential { 'mycred':
   path     => $cred_path, # e.g. '/home/nelsonjr/my_account.json'
@@ -63,7 +69,7 @@ gdns_managed_zone { 'testzone-4-com':
   name        => 'testzone-4-com',
   dns_name    => 'testzone-4.com.',
   description => 'Test Example Zone',
-  project     => 'google.com:graphite-playground',
+  project     => $project, # e.g. 'my-test-project'
   credential  => 'mycred',
 }
 
@@ -71,7 +77,7 @@ gdns_resource_record_set { 'www.testzone-4.com.':
   ensure       => absent,
   managed_zone => 'testzone-4-com',
   type         => 'A',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -79,7 +85,7 @@ gdns_resource_record_set { 'sites.testzone-4.com.':
   ensure       => absent,
   managed_zone => 'testzone-4-com',
   type         => 'CNAME',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -87,6 +93,6 @@ gdns_resource_record_set { 'deleteme.testzone-4.com.':
   ensure       => absent,
   managed_zone => 'testzone-4-com',
   type         => 'A',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }

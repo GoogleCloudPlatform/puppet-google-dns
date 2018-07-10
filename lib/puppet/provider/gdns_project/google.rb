@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -25,11 +25,10 @@
 #
 # ----------------------------------------------------------------------------
 
-require 'google/dns/network/delete'
 require 'google/dns/network/get'
-require 'google/dns/network/post'
 require 'google/dns/network/put'
 require 'google/dns/property/integer'
+require 'google/dns/property/project_quota'
 require 'google/hash_utils'
 require 'puppet'
 
@@ -64,28 +63,7 @@ Puppet::Type.type(:gdns_project).provide(:google) do
   def self.fetch_to_hash(fetch)
     {
       number: Google::Dns::Property::Integer.api_munge(fetch['number']),
-      quota_managed_zones: Google::Dns::Property::Integer.api_munge(
-        Google::HashUtils.navigate(fetch, %w[quota managedZones])
-      ),
-      quota_resource_records_per_rrset: \
-      Google::Dns::Property::Integer.api_munge(
-        Google::HashUtils.navigate(fetch, %w[quota resourceRecordsPerRrset])
-      ),
-      quota_rrset_additions_per_change: \
-      Google::Dns::Property::Integer.api_munge(
-        Google::HashUtils.navigate(fetch, %w[quota rrsetAdditionsPerChange])
-      ),
-      quota_rrset_deletions_per_change: \
-      Google::Dns::Property::Integer.api_munge(
-        Google::HashUtils.navigate(fetch, %w[quota rrsetDeletionsPerChange])
-      ),
-      quota_rrsets_per_managed_zone: Google::Dns::Property::Integer.api_munge(
-        Google::HashUtils.navigate(fetch, %w[quota rrsetsPerManagedZone])
-      ),
-      quota_total_rrdata_size_per_change: \
-      Google::Dns::Property::Integer.api_munge(
-        Google::HashUtils.navigate(fetch, %w[quota totalRrdataSizePerChange])
-      )
+      quota: Google::Dns::Property::ProjectQuota.api_munge(fetch['quota'])
     }.reject { |_, v| v.nil? }
   end
   # rubocop:enable Metrics/MethodLength
@@ -114,16 +92,7 @@ Puppet::Type.type(:gdns_project).provide(:google) do
       name: resource[:name],
       kind: 'dns#project',
       number: resource[:number],
-      quota_managed_zones: resource[:quota_managed_zones],
-      quota_resource_records_per_rrset:
-        resource[:quota_resource_records_per_rrset],
-      quota_rrset_additions_per_change:
-        resource[:quota_rrset_additions_per_change],
-      quota_rrset_deletions_per_change:
-        resource[:quota_rrset_deletions_per_change],
-      quota_rrsets_per_managed_zone: resource[:quota_rrsets_per_managed_zone],
-      quota_total_rrdata_size_per_change:
-        resource[:quota_total_rrdata_size_per_change]
+      quota: resource[:quota]
     }.reject { |_, v| v.nil? }
   end
   # rubocop:enable Metrics/MethodLength

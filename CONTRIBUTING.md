@@ -108,12 +108,10 @@ puppet-codegen:
   * lib/google/dns/property/enum.rb
   * lib/google/dns/property/integer.rb
   * lib/google/dns/property/managedzone_name.rb
+  * lib/google/dns/property/project_quota.rb
   * lib/google/dns/property/string.rb
   * lib/google/dns/property/string_array.rb
   * lib/google/dns/property/time.rb
-  * lib/google/hash_utils.rb
-  * lib/google/object_store.rb
-  * lib/google/string_utils.rb
   * lib/puppet/provider/gdns_managed_zone/google.rb
   * lib/puppet/provider/gdns_project/google.rb
   * lib/puppet/provider/gdns_resource_record_set/google.rb
@@ -124,12 +122,6 @@ puppet-codegen:
   * README.md
   * spec/.rubocop.yml
   * spec/bundle.rb
-  * spec/copyright.rb
-  * spec/copyright_spec.rb
-  * spec/data/copyright_bad1.rb
-  * spec/data/copyright_bad2.rb
-  * spec/data/copyright_good1.rb
-  * spec/data/copyright_good2.rb
   * spec/data/network/gdns_managed_zone/success1~name.yaml
   * spec/data/network/gdns_managed_zone/success1~title.yaml
   * spec/data/network/gdns_managed_zone/success2~name.yaml
@@ -160,7 +152,6 @@ puppet-codegen:
   * spec/gdns_managed_zone_provider_spec.rb
   * spec/gdns_project_provider_spec.rb
   * spec/gdns_resource_record_set_provider_spec.rb
-  * spec/hash_utils_spec.rb
   * spec/network_blocker.rb
   * spec/network_blocker_spec.rb
   * spec/network_delete_spec.rb
@@ -169,7 +160,6 @@ puppet-codegen:
   * spec/network_put_spec.rb
   * spec/puppetlint_spec.rb
   * spec/spec_helper.rb
-  * spec/string_utils_spec.rb
   * spec/test_constants.rb
 
 The list below contains all the files that were automatically sourced from a
@@ -177,8 +167,19 @@ central location:
 
   * .tools/README.md
   * Gemfile.lock
+  * lib/google/hash_utils.rb
+  * lib/google/object_store.rb
+  * lib/google/string_utils.rb
   * LICENSE
+  * spec/copyright.rb
+  * spec/copyright_spec.rb
+  * spec/data/copyright_bad1.rb
+  * spec/data/copyright_bad2.rb
+  * spec/data/copyright_good1.rb
+  * spec/data/copyright_good2.rb
   * spec/data/poor_example.pp
+  * spec/hash_utils_spec.rb
+  * spec/string_utils_spec.rb
 
 [ruby-style-guide]: https://github.com/bbatsov/ruby-style-guide
 [rubocop]: https://rubocop.readthedocs.io/en/latest/
