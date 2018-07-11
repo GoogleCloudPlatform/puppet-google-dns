@@ -1,4 +1,4 @@
-# Copyright 2017 Google Inc.
+# Copyright 2018 Google Inc.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -26,6 +26,7 @@
 # ----------------------------------------------------------------------------
 
 require 'google/dns/property/integer'
+require 'google/dns/property/project_quota'
 require 'puppet'
 
 Puppet::Type.newtype(:gdns_project) do
@@ -63,47 +64,7 @@ Puppet::Type.newtype(:gdns_project) do
     DOC
   end
 
-  newproperty(:quota_managed_zones, parent: Google::Dns::Property::Integer) do
-    desc 'Maximum allowed number of managed zones in the project. (output only)'
-  end
-
-  newproperty(:quota_resource_records_per_rrset,
-              parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Maximum allowed number of ResourceRecords per ResourceRecordSet. (output
-      only)
-    DOC
-  end
-
-  newproperty(:quota_rrset_additions_per_change,
-              parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Maximum allowed number of ResourceRecordSets to add per
-      ChangesCreateRequest. (output only)
-    DOC
-  end
-
-  newproperty(:quota_rrset_deletions_per_change,
-              parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Maximum allowed number of ResourceRecordSets to delete per
-      ChangesCreateRequest. (output only)
-    DOC
-  end
-
-  newproperty(:quota_rrsets_per_managed_zone,
-              parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Maximum allowed number of ResourceRecordSets per zone in the project.
-      (output only)
-    DOC
-  end
-
-  newproperty(:quota_total_rrdata_size_per_change,
-              parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Maximum allowed size for total rrdata in one ChangesCreateRequest in
-      bytes. (output only)
-    DOC
+  newproperty(:quota, parent: Google::Dns::Property::ProjectQuota) do
+    desc 'Quota allowed in project (output only)'
   end
 end

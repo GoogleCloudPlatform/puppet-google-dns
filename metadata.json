@@ -1,6 +1,6 @@
 {
   "name": "google-gdns",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "author": "Google",
   "summary": "A Puppet module to manage Google Cloud DNS resources",
   "license": "Apache-2.0",

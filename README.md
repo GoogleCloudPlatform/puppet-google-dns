@@ -63,7 +63,7 @@ gdns_managed_zone { 'id-for-testzone-3-com':
   name        => 'testzone-3-com',
   dns_name    => 'test.somewild-example.com.',
   description => 'Test Example Zone',
-  project     => 'google.com:graphite-playground',
+  project     => $project, # e.g. 'my-test-project'
   credential  => 'mycred',
 }
 
@@ -88,7 +88,7 @@ gdns_managed_zone { 'some-managed-zone':
   name        => 'testzone-4-com',
   dns_name    => 'testzone-4.com.',
   description => 'Test Example Zone',
-  project     => 'google.com:graphite-playground',
+  project     => $project, # e.g. 'my-test-project'
   credential  => 'mycred',
 }
 
@@ -102,7 +102,7 @@ gdns_resource_record_set { 'www.testzone-4.com.':
     '40.5.6.7',
     '80.9.10.11'
   ],
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -111,7 +111,7 @@ gdns_resource_record_set { 'sites.testzone-4.com.':
   managed_zone => 'some-managed-zone',
   type         => 'CNAME',
   target       => 'www.testzone-4.com.',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -119,7 +119,7 @@ gdns_resource_record_set { 'deleteme.testzone-4.com.':
   ensure       => absent,
   managed_zone => 'some-managed-zone',
   type         => 'A',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -177,7 +177,7 @@ gdns_managed_zone { 'id-for-testzone-3-com':
   name        => 'testzone-3-com',
   dns_name    => 'test.somewild-example.com.',
   description => 'Test Example Zone',
-  project     => 'google.com:graphite-playground',
+  project     => $project, # e.g. 'my-test-project'
   credential  => 'mycred',
 }
 
@@ -261,15 +261,17 @@ gdns_project { 'google.com:graphite-playground':
 
 ```puppet
 gdns_project { 'id-of-resource':
-  number                             => integer,
-  quota_managed_zones                => integer,
-  quota_resource_records_per_rrset   => integer,
-  quota_rrset_additions_per_change   => integer,
-  quota_rrset_deletions_per_change   => integer,
-  quota_rrsets_per_managed_zone      => integer,
-  quota_total_rrdata_size_per_change => integer,
-  project                            => string,
-  credential                         => reference to gauth_credential,
+  number     => integer,
+  quota      => {
+    managed_zones                => integer,
+    resource_records_per_rrset   => integer,
+    rrset_additions_per_change   => integer,
+    rrset_deletions_per_change   => integer,
+    rrsets_per_managed_zone      => integer,
+    total_rrdata_size_per_change => integer,
+  },
+  project    => string,
+  credential => reference to gauth_credential,
 }
 ```
 
@@ -279,26 +281,29 @@ gdns_project { 'id-of-resource':
 * `number`: Output only.
   Unique numeric identifier for the resource; defined by the server.
 
-* `quota_managed_zones`: Output only.
-  Maximum allowed number of managed zones in the project.
+* `quota`: Output only.
+  Quota allowed in project
 
-* `quota_resource_records_per_rrset`: Output only.
-  Maximum allowed number of ResourceRecords per ResourceRecordSet.
+##### quota/managed_zones
+Output only.  Maximum allowed number of managed zones in the project.
 
-* `quota_rrset_additions_per_change`: Output only.
-  Maximum allowed number of ResourceRecordSets to add per
+##### quota/resource_records_per_rrset
+Output only.  Maximum allowed number of ResourceRecords per ResourceRecordSet.
+
+##### quota/rrset_additions_per_change
+Output only.  Maximum allowed number of ResourceRecordSets to add per
   ChangesCreateRequest.
 
-* `quota_rrset_deletions_per_change`: Output only.
-  Maximum allowed number of ResourceRecordSets to delete per
+##### quota/rrset_deletions_per_change
+Output only.  Maximum allowed number of ResourceRecordSets to delete per
   ChangesCreateRequest.
 
-* `quota_rrsets_per_managed_zone`: Output only.
-  Maximum allowed number of ResourceRecordSets per zone in the
+##### quota/rrsets_per_managed_zone
+Output only.  Maximum allowed number of ResourceRecordSets per zone in the
   project.
 
-* `quota_total_rrdata_size_per_change`: Output only.
-  Maximum allowed size for total rrdata in one ChangesCreateRequest
+##### quota/total_rrdata_size_per_change
+Output only.  Maximum allowed size for total rrdata in one ChangesCreateRequest
   in bytes.
 
 #### `gdns_resource_record_set`
@@ -319,7 +324,7 @@ gdns_managed_zone { 'some-managed-zone':
   name        => 'testzone-4-com',
   dns_name    => 'testzone-4.com.',
   description => 'Test Example Zone',
-  project     => 'google.com:graphite-playground',
+  project     => $project, # e.g. 'my-test-project'
   credential  => 'mycred',
 }
 
@@ -333,7 +338,7 @@ gdns_resource_record_set { 'www.testzone-4.com.':
     '40.5.6.7',
     '80.9.10.11'
   ],
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -342,7 +347,7 @@ gdns_resource_record_set { 'sites.testzone-4.com.':
   managed_zone => 'some-managed-zone',
   type         => 'CNAME',
   target       => 'www.testzone-4.com.',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -350,7 +355,7 @@ gdns_resource_record_set { 'deleteme.testzone-4.com.':
   ensure       => absent,
   managed_zone => 'some-managed-zone',
   type         => 'A',
-  project      => 'google.com:graphite-playground',
+  project      => $project, # e.g. 'my-test-project'
   credential   => 'mycred',
 }
 
@@ -392,7 +397,8 @@ Required.  One of valid DNS resource types.
 
 ##### `managed_zone`
 
-Required.  A reference to ManagedZone resource
+Required.  Identifies the managed zone addressed by this request.
+  Can be the managed zone name or id.
 
 
 
