@@ -34,10 +34,9 @@ require 'puppet'
 
 Puppet::Type.newtype(:gdns_resource_record_set) do
   @doc = <<-DOC
-    A single DNS record that exists on a domain name (i.e. in a managed zone).
-    This record defines the information about the domain and where the domain /
-    subdomains direct to. The record will include the domain/subdomain name, a
-    type (i.e. A, AAA, CAA, MX, CNAME, NS, etc)
+    A single DNS record that exists on a domain name (i.e. in a managed zone). This record defines
+    the information about the domain and where the domain / subdomains direct to. The record will
+    include the domain/subdomain name, a type (i.e. A, AAA, CAA, MX, CNAME, NS, etc)
   DOC
 
   autorequire(:gauth_credential) do
@@ -72,8 +71,7 @@ Puppet::Type.newtype(:gdns_resource_record_set) do
 
   newparam(:managed_zone, parent: Google::Dns::Property::ManagZoneNameRef) do
     desc <<-DOC
-      Identifies the managed zone addressed by this request. Can be the managed
-      zone name or id.
+      Identifies the managed zone addressed by this request. Can be the managed zone name or id.
     DOC
   end
 
@@ -98,9 +96,7 @@ Puppet::Type.newtype(:gdns_resource_record_set) do
   end
 
   newproperty(:ttl, parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Number of seconds that this ResourceRecordSet can be cached by resolvers.
-    DOC
+    desc 'Number of seconds that this ResourceRecordSet can be cached by resolvers.'
   end
 
   newproperty(:target, parent: Google::Dns::Property::StringArray) do

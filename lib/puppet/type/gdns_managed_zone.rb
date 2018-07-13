@@ -34,9 +34,8 @@ require 'puppet'
 
 Puppet::Type.newtype(:gdns_managed_zone) do
   @doc = <<-DOC
-    A zone is a subtree of the DNS namespace under one administrative
-    responsibility. A ManagedZone is a resource that represents a DNS zone
-    hosted by the Cloud DNS service.
+    A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone
+    is a resource that represents a DNS zone hosted by the Cloud DNS service.
   DOC
 
   autorequire(:gauth_credential) do
@@ -65,8 +64,8 @@ Puppet::Type.newtype(:gdns_managed_zone) do
 
   newproperty(:description, parent: Google::Dns::Property::String) do
     desc <<-DOC
-      A mutable string of at most 1024 characters associated with this resource
-      for the user's convenience. Has no effect on the managed zone's function.
+      A mutable string of at most 1024 characters associated with this resource for the user's
+      convenience. Has no effect on the managed zone's function.
     DOC
   end
 
@@ -75,36 +74,30 @@ Puppet::Type.newtype(:gdns_managed_zone) do
   end
 
   newproperty(:id, parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Unique identifier for the resource; defined by the server. (output only)
-    DOC
+    desc 'Unique identifier for the resource; defined by the server. (output only)'
   end
 
   newproperty(:name, parent: Google::Dns::Property::String) do
-    desc <<-DOC
-      User assigned name for this resource. Must be unique within the project.
-    DOC
+    desc 'User assigned name for this resource. Must be unique within the project.'
   end
 
   newproperty(:name_servers, parent: Google::Dns::Property::StringArray) do
     desc <<-DOC
-      Delegate your managed_zone to these virtual name servers; defined by the
-      server (output only)
+      Delegate your managed_zone to these virtual name servers; defined by the server (output only)
     DOC
   end
 
   newproperty(:name_server_set, parent: Google::Dns::Property::StringArray) do
     desc <<-DOC
-      Optionally specifies the NameServerSet for this ManagedZone. A
-      NameServerSet is a set of DNS name servers that all host the same
-      ManagedZones. Most users will leave this field unset.
+      Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS
+      name servers that all host the same ManagedZones. Most users will leave this field unset.
     DOC
   end
 
   newproperty(:creation_time, parent: Google::Dns::Property::Time) do
     desc <<-DOC
-      The time that this resource was created on the server. This is in RFC3339
-      text format. (output only)
+      The time that this resource was created on the server. This is in RFC3339 text format.
+      (output only)
     DOC
   end
 

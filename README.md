@@ -138,8 +138,7 @@ gdns_resource_record_set { 'deleteme.testzone-4.com.':
     A project resource. The project is a top level container for resources
     including Cloud DNS ManagedZones.
 * [`gdns_resource_record_set`][]:
-    A single DNS record that exists on a domain name (i.e. in a managed
-    zone).
+    A single DNS record that exists on a domain name (i.e. in a managed zone).
     This record defines the information about the domain and where the
     domain / subdomains direct to.
     The record will include the domain/subdomain name, a type (i.e. A, AAA,

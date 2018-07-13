@@ -31,8 +31,8 @@ require 'puppet'
 
 Puppet::Type.newtype(:gdns_project) do
   @doc = <<-DOC
-    A project resource. The project is a top level container for resources
-    including Cloud DNS ManagedZones.
+    A project resource. The project is a top level container for resources including Cloud DNS
+    ManagedZones.
   DOC
 
   autorequire(:gauth_credential) do
@@ -58,10 +58,7 @@ Puppet::Type.newtype(:gdns_project) do
   end
 
   newproperty(:number, parent: Google::Dns::Property::Integer) do
-    desc <<-DOC
-      Unique numeric identifier for the resource; defined by the server.
-      (output only)
-    DOC
+    desc 'Unique numeric identifier for the resource; defined by the server. (output only)'
   end
 
   newproperty(:quota, parent: Google::Dns::Property::ProjectQuota) do
