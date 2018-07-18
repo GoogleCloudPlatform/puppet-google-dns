@@ -67,17 +67,13 @@ Puppet::Type.type(:gdns_managed_zone).provide(:google) do
 
   def self.fetch_to_hash(fetch)
     {
-      description:
-        Google::Dns::Property::String.api_munge(fetch['description']),
+      description: Google::Dns::Property::String.api_munge(fetch['description']),
       dns_name: Google::Dns::Property::String.api_munge(fetch['dnsName']),
       id: Google::Dns::Property::Integer.api_munge(fetch['id']),
       name: Google::Dns::Property::String.api_munge(fetch['name']),
-      name_servers:
-        Google::Dns::Property::StringArray.api_munge(fetch['nameServers']),
-      name_server_set:
-        Google::Dns::Property::StringArray.api_munge(fetch['nameServerSet']),
-      creation_time:
-        Google::Dns::Property::Time.api_munge(fetch['creationTime'])
+      name_servers: Google::Dns::Property::StringArray.api_munge(fetch['nameServers']),
+      name_server_set: Google::Dns::Property::StringArray.api_munge(fetch['nameServerSet']),
+      creation_time: Google::Dns::Property::Time.api_munge(fetch['creationTime'])
     }.reject { |_, v| v.nil? }
   end
 

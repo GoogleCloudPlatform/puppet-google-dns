@@ -352,8 +352,7 @@ describe Puppet::Type.type(:gdns_resource_record_set).provider(:google) do
                 credential   => 'cred0',
               }
               MANIFEST
-            ).catalog.resource('Gdns_resource_record_set[title0]').provider
-              .ensure
+            ).catalog.resource('Gdns_resource_record_set[title0]').provider.ensure
           end
 
           it { is_expected.to eq :present }
@@ -404,8 +403,7 @@ describe Puppet::Type.type(:gdns_resource_record_set).provider(:google) do
                 credential   => 'cred0',
               }
               MANIFEST
-            ).catalog.resource('Gdns_resource_record_set[title0]').provider
-              .ensure
+            ).catalog.resource('Gdns_resource_record_set[title0]').provider.ensure
           end
 
           it { is_expected.to eq :present }

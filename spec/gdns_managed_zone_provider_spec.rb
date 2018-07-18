@@ -94,24 +94,15 @@ describe Puppet::Type.type(:gdns_managed_zone).provider(:google) do
                 catalog.resource('Gdns_managed_zone[title0]').provider
               end
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#0 data')
-              end
-              it do
-                is_expected.to have_attributes(dns_name: 'test dns_name#0 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#0 data') }
+              it { is_expected.to have_attributes(dns_name: 'test dns_name#0 data') }
               it { is_expected.to have_attributes(id: 2_149_500_871) }
               it { is_expected.to have_attributes(name: 'title0') }
-              it do
-                is_expected.to have_attributes(name_servers: %w[mm nn oo pp])
-              end
+              it { is_expected.to have_attributes(name_servers: %w[mm nn oo pp]) }
               it { is_expected.to have_attributes(name_server_set: %w[uu vv]) }
               it do
                 is_expected
-                  .to have_attributes(
-                    creation_time: ::Time.parse('2059-01-15T02:08:23+00:00')
-                  )
+                  .to have_attributes(creation_time: ::Time.parse('2059-01-15T02:08:23+00:00'))
               end
             end
 
@@ -120,24 +111,15 @@ describe Puppet::Type.type(:gdns_managed_zone).provider(:google) do
                 catalog.resource('Gdns_managed_zone[title1]').provider
               end
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#1 data')
-              end
-              it do
-                is_expected.to have_attributes(dns_name: 'test dns_name#1 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#1 data') }
+              it { is_expected.to have_attributes(dns_name: 'test dns_name#1 data') }
               it { is_expected.to have_attributes(id: 4_299_001_743) }
               it { is_expected.to have_attributes(name: 'title1') }
               it { is_expected.to have_attributes(name_servers: %w[bb cc dd]) }
-              it do
-                is_expected.to have_attributes(name_server_set: %w[rr ss tt])
-              end
+              it { is_expected.to have_attributes(name_server_set: %w[rr ss tt]) }
               it do
                 is_expected
-                  .to have_attributes(
-                    creation_time: ::Time.parse('2148-01-30T04:16:47+00:00')
-                  )
+                  .to have_attributes(creation_time: ::Time.parse('2148-01-30T04:16:47+00:00'))
               end
             end
 
@@ -146,26 +128,15 @@ describe Puppet::Type.type(:gdns_managed_zone).provider(:google) do
                 catalog.resource('Gdns_managed_zone[title2]').provider
               end
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#2 data')
-              end
-              it do
-                is_expected.to have_attributes(dns_name: 'test dns_name#2 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#2 data') }
+              it { is_expected.to have_attributes(dns_name: 'test dns_name#2 data') }
               it { is_expected.to have_attributes(id: 6_448_502_614) }
               it { is_expected.to have_attributes(name: 'title2') }
-              it do
-                is_expected.to have_attributes(name_servers: %w[pp qq rr ss tt])
-              end
-              it do
-                is_expected.to have_attributes(name_server_set: %w[oo pp qq rr])
-              end
+              it { is_expected.to have_attributes(name_servers: %w[pp qq rr ss tt]) }
+              it { is_expected.to have_attributes(name_server_set: %w[oo pp qq rr]) }
               it do
                 is_expected
-                  .to have_attributes(
-                    creation_time: ::Time.parse('2237-02-13T06:25:11+00:00')
-                  )
+                  .to have_attributes(creation_time: ::Time.parse('2237-02-13T06:25:11+00:00'))
               end
             end
           end
@@ -232,24 +203,15 @@ describe Puppet::Type.type(:gdns_managed_zone).provider(:google) do
                 catalog.resource('Gdns_managed_zone[title0]').provider
               end
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#0 data')
-              end
-              it do
-                is_expected.to have_attributes(dns_name: 'test dns_name#0 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#0 data') }
+              it { is_expected.to have_attributes(dns_name: 'test dns_name#0 data') }
               it { is_expected.to have_attributes(id: 2_149_500_871) }
               it { is_expected.to have_attributes(name: 'test name#0 data') }
-              it do
-                is_expected.to have_attributes(name_servers: %w[mm nn oo pp])
-              end
+              it { is_expected.to have_attributes(name_servers: %w[mm nn oo pp]) }
               it { is_expected.to have_attributes(name_server_set: %w[uu vv]) }
               it do
                 is_expected
-                  .to have_attributes(
-                    creation_time: ::Time.parse('2059-01-15T02:08:23+00:00')
-                  )
+                  .to have_attributes(creation_time: ::Time.parse('2059-01-15T02:08:23+00:00'))
               end
             end
 
@@ -258,24 +220,15 @@ describe Puppet::Type.type(:gdns_managed_zone).provider(:google) do
                 catalog.resource('Gdns_managed_zone[title1]').provider
               end
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#1 data')
-              end
-              it do
-                is_expected.to have_attributes(dns_name: 'test dns_name#1 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#1 data') }
+              it { is_expected.to have_attributes(dns_name: 'test dns_name#1 data') }
               it { is_expected.to have_attributes(id: 4_299_001_743) }
               it { is_expected.to have_attributes(name: 'test name#1 data') }
               it { is_expected.to have_attributes(name_servers: %w[bb cc dd]) }
-              it do
-                is_expected.to have_attributes(name_server_set: %w[rr ss tt])
-              end
+              it { is_expected.to have_attributes(name_server_set: %w[rr ss tt]) }
               it do
                 is_expected
-                  .to have_attributes(
-                    creation_time: ::Time.parse('2148-01-30T04:16:47+00:00')
-                  )
+                  .to have_attributes(creation_time: ::Time.parse('2148-01-30T04:16:47+00:00'))
               end
             end
 
@@ -284,26 +237,15 @@ describe Puppet::Type.type(:gdns_managed_zone).provider(:google) do
                 catalog.resource('Gdns_managed_zone[title2]').provider
               end
 
-              it do
-                is_expected
-                  .to have_attributes(description: 'test description#2 data')
-              end
-              it do
-                is_expected.to have_attributes(dns_name: 'test dns_name#2 data')
-              end
+              it { is_expected.to have_attributes(description: 'test description#2 data') }
+              it { is_expected.to have_attributes(dns_name: 'test dns_name#2 data') }
               it { is_expected.to have_attributes(id: 6_448_502_614) }
               it { is_expected.to have_attributes(name: 'test name#2 data') }
-              it do
-                is_expected.to have_attributes(name_servers: %w[pp qq rr ss tt])
-              end
-              it do
-                is_expected.to have_attributes(name_server_set: %w[oo pp qq rr])
-              end
+              it { is_expected.to have_attributes(name_servers: %w[pp qq rr ss tt]) }
+              it { is_expected.to have_attributes(name_server_set: %w[oo pp qq rr]) }
               it do
                 is_expected
-                  .to have_attributes(
-                    creation_time: ::Time.parse('2237-02-13T06:25:11+00:00')
-                  )
+                  .to have_attributes(creation_time: ::Time.parse('2237-02-13T06:25:11+00:00'))
               end
             end
           end
