@@ -33,11 +33,11 @@ module Google
     module Data
       # Base class for ResourceRefs
       # Imports name from managed_zone
-      class ManagZoneNameRef
+      class ManagedZoneNameRef
         include Comparable
 
         def ==(other)
-          return false unless other.is_a? ManagZoneNameRef
+          return false unless other.is_a? ManagedZoneNameRef
           return false if resource != other.resource
           true
         end
@@ -49,7 +49,7 @@ module Google
 
       # A class to fetch the resource value from a referenced block
       # Will return the value exported from a different Puppet resource
-      class ManagZoneNameRefCatalog < ManagZoneNameRef
+      class ManagedZoneNameRefCatalog < ManagedZoneNameRef
         def initialize(title)
           @title = title
         end
@@ -78,7 +78,7 @@ module Google
 
       # A class to manage a JSON blob from GCP API
       # Will immediately return value from JSON blob without changes
-      class ManagZoneNameRefApi < ManagZoneNameRef
+      class ManagedZoneNameRefApi < ManagedZoneNameRef
         attr_reader :resource
 
         def initialize(resource)
@@ -97,7 +97,7 @@ module Google
 
     module Property
       # A class to manage fetching name from a managed_zone
-      class ManagZoneNameRef < Puppet::Property
+      class ManagedZoneNameRef < Puppet::Property
         # Used for catalog values
         def unsafe_munge(value)
           self.class.unsafe_munge(value)
@@ -105,13 +105,13 @@ module Google
 
         def self.unsafe_munge(value)
           return if value.nil?
-          Data::ManagZoneNameRefCatalog.new(value)
+          Data::ManagedZoneNameRefCatalog.new(value)
         end
 
         # Used for fetched JSON values
         def self.api_munge(value)
           return if value.nil?
-          Data::ManagZoneNameRefApi.new(value)
+          Data::ManagedZoneNameRefApi.new(value)
         end
       end
     end

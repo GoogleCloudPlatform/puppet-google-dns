@@ -69,7 +69,7 @@ Puppet::Type.newtype(:gdns_resource_record_set) do
     desc 'The name of the ResourceRecordSet.'
   end
 
-  newparam(:managed_zone, parent: Google::Dns::Property::ManagZoneNameRef) do
+  newparam(:managed_zone, parent: Google::Dns::Property::ManagedZoneNameRef) do
     desc <<-DOC
       Identifies the managed zone addressed by this request. Can be the managed zone name or id.
     DOC
