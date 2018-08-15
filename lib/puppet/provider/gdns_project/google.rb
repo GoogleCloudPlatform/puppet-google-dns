@@ -77,7 +77,7 @@ Puppet::Type.type(:gdns_project).provide(:google) do
     debug('flush')
     # return on !@dirty is for aiding testing (puppet already guarantees that)
     return if @created || @deleted || !@dirty
-    raise 'DNS Project cannot be edited' if @dirty
+    raise 'Project cannot be edited.'
   end
 
   def dirty(field, from, to)

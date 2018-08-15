@@ -106,7 +106,7 @@ Puppet::Type.type(:gdns_managed_zone).provide(:google) do
     debug('flush')
     # return on !@dirty is for aiding testing (puppet already guarantees that)
     return if @created || @deleted || !@dirty
-    raise 'DNS Managed Zone cannot be edited' if @dirty
+    raise 'ManagedZone cannot be edited.'
   end
 
   def dirty(field, from, to)
