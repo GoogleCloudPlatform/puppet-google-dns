@@ -119,8 +119,7 @@ Puppet::Type.type(:gdns_managed_zone).provide(:google) do
 
   def exports
     {
-      name: resource[:name],
-      project: resource[:project]
+      name: resource[:name]
     }
   end
 
