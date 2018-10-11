@@ -807,15 +807,12 @@ describe Puppet::Type.type(:gdns_resource_record_set).provider(:google) do
       .and_return(request)
   end
 
-  def collection(data, extra = '', extra_data = {})
+  def collection(data)
     URI.join(
       'https://www.googleapis.com/dns/v1/',
       expand_variables(
-        [
-          'projects/{{project}}/managedZones/{{managed_zone}}/changes',
-          extra
-        ].join,
-        data, extra_data
+        'projects/{{project}}/managedZones/{{managed_zone}}/changes',
+        data
       )
     )
   end
